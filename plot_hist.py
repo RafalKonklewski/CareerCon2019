@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-hist = np.loadtxt("/home/rafal/CareerCon2019/histograms/histogram2019_03_18_14_08_10.txt")
+path = ""
+hist = np.loadtxt(path)
 
 fig = plt.figure()
 hist = hist.reshape(2, -1)

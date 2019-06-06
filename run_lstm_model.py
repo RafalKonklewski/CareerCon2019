@@ -186,8 +186,8 @@ for t in tqdm(range(num_epochs)):
         predictions = np.array([])
     if t % 50 == 0:
         current_time = strftime("%Y_%m_%d_%H_%M_%S", gmtime())
-        path = '/home/rafal/CareerCon2019/models/lstm_model{}.txt'.format(current_time)
-        path_histogram = '/home/rafal/CareerCon2019/histograms/histogram{}.txt'.format(current_time)
+        path = './models/lstm_model{}.txt'.format(current_time)
+        path_histogram = './histograms/histogram{}.txt'.format(current_time)
         torch.save(model.state_dict(), path)
         np.savetxt(path_histogram, hist)
     # scheduler.step(np.mean(val_loss_array))
@@ -196,7 +196,7 @@ for t in tqdm(range(num_epochs)):
 
 
 ################## SUBMISSION
-test_x = pd.read_csv("data/X_test.csv")
+test_x = pd.read_csv("./data/X_test.csv")
 test_x = test_x.set_index('row_id').drop(['series_id', 'measurement_number'], axis=1)
 
 for col in train_x.columns:
@@ -224,7 +224,7 @@ preds = le.inverse_transform(np.argmax(predict.cpu().numpy(), axis=1).reshape(-1
 preds_df = pd.DataFrame({"surface": preds})
 preds_df.index.name = 'series_id'
 
-preds_df.to_csv('/home/rafal/CareerCon2019/submission.csv')
+preds_df.to_csv('./submission.csv')
 
 
 
